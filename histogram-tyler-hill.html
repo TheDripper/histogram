@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Histogram</title>
+  </head>
+  <body>
+    <h1>Histogram</h1>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      let data = [1, 2, 2, 5, 4];
+      data.sort();
+      data.map(point=>{
+	console.log(point);
+      })
+
+      ctx.fillStyle = "green";
+      ctx.fillRect(10, 10, 150, 100);
+    </script>
+  </body>
+</html>
