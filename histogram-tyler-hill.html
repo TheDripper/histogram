@@ -9,14 +9,18 @@
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
 
-      let data = [1, 2, 2, 5, 4];
-      data.sort();
-      data.map(point=>{
-	console.log(point);
-      })
-
-      ctx.fillStyle = "green";
-      ctx.fillRect(10, 10, 150, 100);
+      let input = [1, 2, 2, 3, 2, 1, 7, 4, 5, 4];
+      let data = {};
+      input.map((point) => {
+        if (point in data) {
+          data[point]++;
+        } else {
+          data[point] = 1;
+        }
+        // ctx.fillStyle = "green";
+        // ctx.fillRect(point, 0, 10, 10);
+      });
+      console.log(data);
     </script>
   </body>
 </html>
