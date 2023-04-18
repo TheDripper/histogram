@@ -1,6 +1,12 @@
 <html>
   <head>
     <title>Histogram</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+        width: 1000px;
+      }
+    </style>
   </head>
   <body>
     <h1>Histogram</h1>
@@ -9,7 +15,8 @@
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
 
-      let input = [1, 2, 2, 3, 2, 1, 7, 4, 5, 4];
+      let input = [2, 2, 2, 3, 2, 1, 9, 4, 5, 4];
+      // let input = [5];
       let data = {};
       input.map((point) => {
         if (point in data) {
@@ -17,10 +24,17 @@
         } else {
           data[point] = 1;
         }
-        // ctx.fillStyle = "green";
-        // ctx.fillRect(point, 0, 10, 10);
       });
       console.log(data);
+      ctx.moveTo(0, 0);
+      for (let point in data) {
+        console.log(data[point]);
+        const height = data[point] * 10;
+        ctx.beginPath();
+        ctx.rect(point,0,10,height);
+        // ctx.rect(point, 0, 100, data[point]);
+        ctx.stroke();
+      }
     </script>
   </body>
 </html>
