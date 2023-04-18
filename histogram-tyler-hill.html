@@ -30,8 +30,9 @@
       for (let point in data) {
         console.log(data[point]);
         const height = data[point] * 10;
+        const start = point * 10;
         ctx.beginPath();
-        ctx.rect(point,0,10,height);
+        ctx.rect(start,0,10,height);
         // ctx.rect(point, 0, 100, data[point]);
         ctx.stroke();
       }
