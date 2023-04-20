@@ -11,33 +11,49 @@
   </head>
   <body>
     <h1>Histogram</h1>
+    <input id="data" type="text" />
     <canvas id="canvas"></canvas>
     <script>
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-
-      let input = [20, 2, 2, 3, 2, 1, 9, 4, 5, 4];
       // let input = [5];
-      let data = {};
-      input.map((point) => {
-        if (point in data) {
-          data[point]++;
-        } else {
-          data[point] = 1;
+      function mapPoints(points) {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        console.log('points',points);
+        let data = {};
+        points.map((point) => {
+          if (point in data) {
+            data[point]++;
+          } else {
+            data[point] = 1;
+          }
+        });
+        ctx.moveTo(0, 0);
+        // ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.translate(0, 150);
+        // ctx.restore();
+        for (let point in data) {
+          const height = data[point] * -10;
+          const start = point * 10;
+          ctx.beginPath();
+          ctx.rect(start, 0, 10, height);
+          // ctx.rect(point, 0, 100, data[point]);
+          ctx.stroke();
         }
-      });
-      console.log(data);
-      ctx.moveTo(0, 0);
-      ctx.translate(0,50);
-      for (let point in data) {
-        console.log(data[point]);
-        const height = data[point] * -10;
-        const start = point * 10;
-        ctx.beginPath();
-        ctx.rect(start,0,10,height);
-        // ctx.rect(point, 0, 100, data[point]);
-        ctx.stroke();
       }
+      let input = [20, 2, 2, 3, 2, 1, 9, 4, 5, 4];
+      mapPoints(input);
+      document
+        .getElementById("data")
+        .addEventListener("change", function (event) {
+          let inputStr = event.target.value.split(",");
+          let input = [];
+          inputStr.map(str=>{
+            input.push(Number(str));
+          });
+          mapPoints(input);
+        });
     </script>
   </body>
 </html>
